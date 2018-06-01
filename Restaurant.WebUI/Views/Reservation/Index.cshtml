@@ -1,0 +1,46 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_EmployeeLayout.cshtml";
+}
+
+@{
+    var ajaxOptions = new AjaxOptions
+    {
+        UpdateTargetId = "Reservations",
+        HttpMethod = "GET",
+        InsertionMode = InsertionMode.Replace
+    };
+}
+
+@using Restaurant.WebUI.Helpers;
+<div id="ContainerReservation">
+    <ul id="ReservationNavBar">
+        <li>
+            @Ajax.ActionLink("Current reservations", "Reservations", "Reservation", null, ajaxOptions)
+        </li>
+        <li>
+            @Ajax.ActionLink("History", "HistoryReservations", "Reservation", null, ajaxOptions)
+        </li>
+    </ul>
+    <div id="Reservations">
+        @Html.Action("Reservations", "Reservation")
+    </div>
+</div>
+
+@section scripts{
+    <script type="text/javascript">
+        $(document).ready(function () {
+            var activeClass = 'activeForDynamic';
+            var $reservationsTabs = $('#ReservationNavBar').children('li').find('a');
+            var $currentElement = $reservationsTabs[0];
+            $($currentElement).addClass(activeClass);
+            $($reservationsTabs).on('click', function () {
+                var $this = $(this);
+                $($currentElement).removeClass(activeClass);
+                $($this).addClass(activeClass);
+                $currentElement = $this;
+            });
+        });
+    </script>    
+}

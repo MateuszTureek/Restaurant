@@ -1,0 +1,17 @@
+﻿
+@using Restaurant.WebUI.Helpers;
+@model IEnumerable<Restaurant.Domain.Entities.MenuCategory>
+
+<ul id="MenuBar">
+    <li>
+        @Ajax.ActionLink("ALL", "DishListPartial", "Dish", null,
+                          new AjaxOptions { UpdateTargetId = "Dishes", LoadingElementId = "Loading" })
+    </li>
+    @foreach (var catItem in Model)
+    {
+        <li>
+            @Ajax.ActionLink(catItem.Name, "DishListPartial", "Dish", new { menuCategoryName = catItem.Name },
+                             new AjaxOptions { UpdateTargetId = "Dishes", LoadingElementId = "Loading" })
+        </li>
+    }
+</ul>

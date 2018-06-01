@@ -1,0 +1,35 @@
+﻿@model IEnumerable<Restaurant.Domain.Entities.Gallery>
+
+@{
+    ViewBag.Title = "Manage";
+    Layout = "~/Views/Shared/_EmployeeLayout.cshtml";
+}
+
+<div id="GalleryManage">
+    <div id="GalleryHeader">
+        <h2>Gallery manage</h2>
+        <a class="btn-add" href="@Url.Action("Create","Gallery")">Add new item</a>
+    </div>
+    <div style="clear: both;"></div>
+    @foreach(var galleryItem in Model)
+    {
+        <div class="gallery-item">
+            <p>
+                @Html.DisplayNameFor(m=>m.Position):
+                @galleryItem.Position
+            </p>
+            <img src="@Url.Action("GetImage","Gallery",new { id = galleryItem.Id })" class="gallery-img" />
+            <p class="gallery-buttons">
+                <p>
+                    <a href="@Url.Action("Edit", "Gallery", new { id = galleryItem.Id })" class="btn-edit">Edit</a>
+                </p>
+                @using (Html.BeginForm("Delete", "Gallery", FormMethod.Post))
+                {
+                    @Html.AntiForgeryToken()
+                    @Html.Hidden("Id", galleryItem.Id)
+                    <button type="submit" class="btn-delete">Delete</button>
+                }
+            </p>
+        </div>
+    }
+</div>

@@ -1,0 +1,40 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_EmployeeLayout.cshtml";
+}
+
+<div id="Dashboard">
+    <h2>Statistics</h2>
+    <div class="today-reservation">
+        <span class="glyphicon glyphicon-book"></span>
+        <p class="title">Reservations</p>
+        <div style="clear:both"></div>
+        <p class="amount">@Html.Action("GetAmountOfReservations", "Manage")</p>
+    </div>
+    <div class="total-dishes">
+        <span class="glyphicon glyphicon-apple"></span>
+        <p class="title">Dishes</p>
+        <div style="clear:both"></div>
+        <p class="amount">@Html.Action("GetAmountOfDishes", "Manage")</p>
+    </div>
+    <div class="total-category-menu">
+        <span class="glyphicon glyphicon-menu-hamburger"></span>
+        <p class="title">Menu</p>
+        <div style="clear:both"></div>
+        <p class="amount">@Html.Action("GetAmountOfMenuCategories", "Manage")</p>
+    </div>
+    <div class="total-gallery-photo">
+        <span class="glyphicon glyphicon-picture"></span>
+        <p class="title">Gallery photos</p>
+        <div style="clear:both"></div>
+        <p class="amount">@Html.Action("GetAmountOfGalleryPictures", "Manage")</p>
+    </div>
+</div>
+<div style="clear: both"></div>
+
+@Html.Action("TodayReservations", "Reservation")
+
+@section scripts{
+    <script src="~/Scripts/Restaurant/Reservation.js"></script>
+}

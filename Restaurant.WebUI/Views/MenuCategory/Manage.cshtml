@@ -1,0 +1,45 @@
+﻿@model IEnumerable<Restaurant.Domain.Entities.MenuCategory>
+
+@{
+    ViewBag.Title = "Manage";
+    Layout = "~/Views/Shared/_EmployeeLayout.cshtml";
+}
+
+<div id="MenuCategoryManage">
+    <h2>Menu category manage</h2>
+    <a href="@Url.Action("Create","MenuCategory")" class="btn-add btn-menu-category">Add new menu category</a>
+    <div style="clear: both;"></div>
+    <div class="menu-category">
+        <h3 class="menu-category-title">Menu categories:</h3>
+        <div class="menu-category-content">
+            <table>
+                <tr>
+                    <th>@Html.DisplayNameFor(m=>m.Name)</th>
+                    <th>@Html.DisplayNameFor(m => m.Position)</th>
+                    <th></th>
+                    <th></th>
+                </tr>
+                @foreach (var menuCat in Model)
+                {
+                    <tr>
+                        <td>@menuCat.Name</td>
+                        <td>@menuCat.Position</td>
+                        <td>
+                            <a href="@Url.Action("Edit","MenuCategory",new { id = menuCat.Id })"
+                               class="btn-edit" style="font-size: 0.9em;">Edit</a>
+                        </td>
+                        <td>
+                            @using (Html.BeginForm("Delete", "MenuCategory", FormMethod.Post))
+                            {
+                                @Html.AntiForgeryToken()
+                                @Html.Hidden("Id", menuCat.Id)
+                                <button type="submit" class="btn-delete">Delete</button>
+                            }
+                        </td>
+                    </tr>
+                }
+            </table>
+        </div>
+    </div>
+    <div style="clear: both;"></div>
+</div>

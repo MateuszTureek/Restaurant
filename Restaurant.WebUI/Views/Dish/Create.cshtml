@@ -1,0 +1,78 @@
+﻿@model Restaurant.WebUI.Models.CreateDishViewModel
+
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_EmployeeLayout.cshtml";
+}
+
+<div id="ContainerForForm">
+    <a class="backLink" href="@Url.Action("Manage","Dish")">Return to dishes</a>
+    <h2>New dish</h2>
+    @using (Html.BeginForm("Create", "Dish", FormMethod.Post, new { enctype = "multipart/form-data" }))
+    {
+        @Html.AntiForgeryToken()
+        @Html.ValidationSummary(true, "", new { @class = "validation-msg" })
+
+        <div class="f-group">
+            @Html.LabelFor(m => m.Name)
+            <div class="f-input">
+                @Html.TextBoxFor(m => m.Name)
+                <span class="validation-msg">
+                    @Html.ValidationMessageFor(m => m.Name)
+                </span>
+            </div>
+        </div>
+        <div class="f-group">
+            @Html.LabelFor(m => m.Price)
+            <div class="f-input">
+                @Html.TextBoxFor(m => m.Price)
+                <span class="validation-msg">
+                    @Html.ValidationMessageFor(m => m.Price)
+                </span>
+            </div>
+        </div>
+        <div class="f-group">
+            @Html.LabelFor(m => m.Description)
+            <div class="f-input">
+                @Html.TextAreaFor(m => m.Description, new { rows = "3", cols = "57" })
+                <span class="validation-msg">
+                    @Html.ValidationMessageFor(m => m.Description)
+                </span>
+            </div>
+        </div>
+        <div class="f-group">
+            @Html.LabelFor(m => m.Position)
+            <div class="f-input">
+                @Html.DropDownListFor(m => m.Position, Model.Positions)
+                <span class="validation-msg">
+                    @Html.ValidationMessageFor(m => m.Position)
+                </span>
+            </div>
+        </div>
+        <div class="f-group">
+            @Html.LabelFor(m => m.MenuCategoryName)
+            <div class="f-input">
+                @Html.DropDownListFor(m => m.MenuCategoryName, Model.MenuCategories)
+                <span class="validation-msg">
+                    @Html.ValidationMessageFor(m => m.MenuCategoryName)
+                </span>
+            </div>
+        </div>
+        <div class="f-group">
+            <label for="Photo"></label>
+            <div class="f-photo">
+                <img src="@Url.Action("GetPhoto","Dish",new { id = 0 })" alt="image not found" />
+                <input id="PhotoFile" name="Photo" type="file" />
+                <div style="clear: both;"></div>
+            </div>
+        </div>
+        <div class="right-button">
+            <input type="submit" value="Add new dish" class="btn-submit"/>
+        </div>
+        <div style="clear: both;"></div>
+    }
+</div>
+
+@section scripts{
+    <script src="~/Scripts/Restaurant/LoadPhoto.js"></script>
+}

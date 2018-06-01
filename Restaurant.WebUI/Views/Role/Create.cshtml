@@ -1,0 +1,30 @@
+﻿
+@model Restaurant.WebUI.Models.RoleViewModel
+
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div id="ContainerForForm">
+    <h2>Create new employee</h2>
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+        @Html.ValidationSummary(true, "", new { @class = "validation-msg" })
+
+        <div class="f-group">
+            @Html.LabelFor(m => m.RoleName)
+            <div class="f-input">
+                @Html.TextBoxFor(m => m.RoleName)
+                <span class="validation-msg">
+                    @Html.ValidationMessageFor(m => m.RoleName)
+                </span>
+            </div>
+        </div>
+        <div class="right-button">
+            <input type="submit" value="Add new role" class="btn-submit" />
+        </div>
+        <div style="clear: both;"></div>
+    }
+</div>

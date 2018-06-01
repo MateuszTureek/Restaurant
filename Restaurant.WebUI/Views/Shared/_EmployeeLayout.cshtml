@@ -1,0 +1,60 @@
+﻿
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewBag.Title</title>
+    @Styles.Render("~/Content/employeeCss")
+    @Scripts.Render("~/bundles/modernizr")
+</head>
+    <body>
+        @using Restaurant.WebUI.Helpers;
+        <div id="Container">
+            <header>
+                <div id="Logo">
+                    @Html.ActionLink("Restaurant", "Index", "Home", null, new { @class = "logo-a" })
+                </div>
+                <nav>
+                    <ul>
+                        <li class="username">
+                            <a href="@Url.Action("Index", "Manage")"><span class="glyphicon glyphicon-user"></span>@User.Identity.Name</a></li>
+                        <li class="@Html.IsSelected("Index","Manage", "active")">
+                            <a href="@Url.Action("Index", "Manage")"><span class="glyphicon glyphicon-home"></span></a>
+                        </li>
+                        <li class="@Html.IsSelected("Index","AccountManage", "active")">
+                            <a href="@Url.Action("Index","AccountManage")"><span class="glyphicon glyphicon-cog"></span></a>
+                        </li>
+                        <li>
+                            @using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm" }))
+                            {
+                                @Html.AntiForgeryToken()
+                                <a href="javascript:document.getElementById('logoutForm').submit()">
+                                    <span class="glyphicon glyphicon-log-out"></span>
+                                </a>
+                            }
+                        </li>
+                    </ul>
+                </nav>
+            </header>
+        </div>
+        <aside>
+            @Html.Partial("EmployeeCategories")
+        </aside>
+        <div class="body-content">
+            <div>
+                @if (TempData["Message"] != null)
+                {
+                    <p class="message">@TempData["Message"]</p>
+                }
+            </div>
+            @RenderBody()
+        </div>
+        <div style="clear:both"></div>
+        <footer></footer>
+
+        @Scripts.Render("~/bundles/jquery")
+        @Scripts.Render("~/bundles/jqueryval")
+        @Scripts.Render("~/bundles/bootstrap")
+        @RenderSection("scripts", required: false)
+    </body>
+</html>

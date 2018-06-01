@@ -1,0 +1,176 @@
+﻿
+@using Restaurant.WebUI.Helpers;
+
+<ul id="ManageOptions">
+    <li class="@Html.IsSelected("Index","Admin", "active")">
+        <a href="@Url.Action("Index" ,"Admin")">
+            <span class="glyphicon glyphicon-home"></span>
+            Home
+        </a>
+    </li>
+    <li class="users-dropdown">
+        <a href="#">
+            <span class="glyphicon glyphicon-user"></span>Users<span class="caret"></span>
+        </a>
+        <ul data-item-name="user">
+            <li class="@Html.IsSelected("Create","User", "active")">
+                <a href="@Url.Action("Create","User")">
+                    <span class="glyphicon glyphicon-plus"></span>New user
+                </a>
+            </li>
+            <li class="@Html.IsSelected("List","User", "active")">
+                <a href="@Url.Action("List", "User")">
+                    <span class="glyphicon glyphicon-list"></span>User list
+                </a>
+            </li>
+        </ul>
+    </li>
+    <li class="users-dropdown">
+        <a href="#">
+            <span class="glyphicon glyphicon-list-alt"></span>Roles<span class="caret"></span>
+        </a>
+        <ul data-item-name="role">
+            <li class="@Html.IsSelected("Create","Role", "active")">
+                <a href="@Url.Action("Create", "Role")">
+                    <span class="glyphicon glyphicon-plus"></span>Role user
+                </a>
+            </li>
+            <li class="@Html.IsSelected("List","Role", "active")">
+                <a href="@Url.Action("List", "Role")">
+                    <span class="glyphicon glyphicon-list-alt"></span>Role list
+                </a>
+            </li>
+        </ul>
+    </li>
+</ul>
+
+<script src="~/Scripts/jquery-3.1.1.js"></script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        adminAsideModule.init();
+    });
+
+    var adminAsideModule = (function () {
+        var $userDropdown = $('.users-dropdown'),
+        animDropdownUlClassName = 'animDropdownUl',
+        animDropupClassName = 'animDropupUl',
+        userKey = 'asideUserKey',
+        roleKey = 'asideRoleKey';
+
+        var init = function () {
+            initEvents();
+            actionForDropdown($($userDropdown).children('ul').get(0));
+            actionForDropdown($($userDropdown).children('ul').get(1));
+        };
+
+        var initEvents = function () {
+            $.each($userDropdown, function (i, $object) {
+                var $a = $($object).children('a').first();
+                $($a).on('click', function (e) {
+                    e.preventDefault();
+                    var $ul = $(this).siblings('ul').first();
+                    var dataVal = $($ul).data('itemName');
+                    var sessionVal;
+                    /*====================*/
+                    if (dataVal === 'user') {
+                        sessionVal = sessionStorage.getItem(userKey);
+                        var val = JSON.parse(sessionVal);
+                        if (val) {
+                            sessionStorage.setItem(userKey, false);
+                        }
+                        else {
+                            sessionStorage.setItem(userKey, true);
+                        }
+                    }
+                    /*====================*/
+                    if (dataVal === 'role') {
+                        sessionVal = sessionStorage.getItem(roleKey);
+                        var val = JSON.parse(sessionVal);
+                        if (val) {
+                            sessionStorage.setItem(roleKey, false);
+                        }
+                        else {
+                            sessionStorage.setItem(roleKey, true);
+                        }
+                    }
+                    /*====================*/
+                    var value = JSON.parse(sessionVal);
+                    if (value == null) {
+                        $($ul).addClass(animDropdownUlClassName);
+                        return;
+                    }
+                    if (!value) {
+                        $($ul).addClass(animDropdownUlClassName);
+                        $($ul).removeClass(animDropupClassName);
+                    } else {
+                        $($ul).addClass(animDropupClassName);
+                        $($ul).removeClass(animDropdownUlClassName);
+                    }
+                });
+            });
+        };
+
+        var actionForDropdown = function ($element) {
+            var dataVal = $($element).data("itemName");
+            switch (dataVal) {
+                case 'user':
+                    {
+                        var result = checkSessionStorageValues(userKey);
+                        if (result == null) {
+                            sessionStorage.setItem(userKey, false);
+                            return;
+                        }
+                        if (result) {
+                            $($element).css({
+                                'height': '83px',
+                                'transform': 'scaleY(1)',
+                                'opacity': '1'
+                            });
+                        } else {
+                            $($element).css({
+                                'height': '0',
+                                'transform': 'scaleY(0)',
+                                'opacity': '0'
+                            });
+                        }
+                        break;
+                    }
+                case 'role':
+                    {
+                        var result = checkSessionStorageValues(roleKey);
+                        if (result == null) {
+                            sessionStorage.setItem(roleKey, false);
+                            return;
+                        }
+                        if (result) {
+                            $($element).css({
+                                'height': '83px',
+                                'transform': 'scaleY(1)',
+                                'opacity': '1'
+                            });
+                        } else {
+                            $($element).css({
+                                'height': '0',
+                                'transform': 'scaleY(0)',
+                                'opacity': '0'
+                            });
+                        }
+                        break;
+                    }
+            }
+        };
+
+        var checkSessionStorageValues = function (sessionKey) {
+            var sessionVal = sessionStorage.getItem(sessionKey);
+            var result = JSON.parse(sessionVal);
+            if (result) {
+                return true;
+            }
+            return false;
+        };
+
+        return {
+            init: init
+        };
+    })();
+</script>

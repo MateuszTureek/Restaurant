@@ -1,0 +1,548 @@
+﻿#ManageOptions{
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    font-size: 1.2em;
+    letter-spacing: 1px;
+}
+#ManageOptions a{
+    display: block;
+    padding: 13px;
+    padding-left: 22px;
+    text-decoration: none;
+    color: white;
+}
+#ManageOptions a:hover{
+    background: #808080;
+}
+
+#Dashboard{
+    border-bottom: 1px dotted #37474F;
+    padding-top: 20px;
+    padding-bottom: 0px;
+    min-height: 250px;
+}
+
+#Dashboard h2{
+    margin: 0px 0 15px 29px;
+    padding:0;
+}
+
+#Dashboard>div{
+    float: left;
+    width: 22%;
+    margin-left: 2.5%;
+    height: 120px;
+    color: white;
+    position: relative;
+}
+
+#Dashboard>div>span{
+    font-size: 3.8em;
+    display: inline-block;
+    position: relative;
+    left: 6%; top: 20%;
+    float: left;
+}
+#Dashboard .title{
+    float: right;
+    position: relative;
+    right: 7%; top: 24%;
+    font-size: 1.3em;
+}
+
+#Dashboard .amount{
+    position: relative;
+    float: right;
+    top: 13%;
+    right: 10%;
+    font-size: 1.6em;
+}
+
+.today-reservation{
+    background: #3F729B;
+}
+#Dashboard>div:before{
+    background: #37474F;
+    height: 0;
+    content: '';
+    position: absolute;
+    top: 0; right: 0; bottom: 0; left: 0;
+}
+#Dashboard>div:hover:before{
+    animation: today_reservation_hover_before_anim 0.2s linear forwards;
+}
+@keyframes today_reservation_hover_before_anim{
+    0%{
+        
+    }
+    100%{
+        height: 100%;
+    }
+}
+.total-dishes{
+    background: #00695c;
+}
+.total-category-menu{
+    background: #9933CC;
+}
+.total-gallery-photo{
+    background: #0d47a1;
+}
+#ContainerReservation{
+    background: rgba(128, 128, 128, 0.20);
+    padding-bottom: 30px;
+}
+#CurrentReservations{
+    margin: 0 10px 10px 10px;
+    padding: 20px 5px 20px 5px;
+    background: white;
+}
+#CurrentReservations h2{
+    margin: 0 0 20px 0;
+    padding:0;
+}
+#CurrentReservations .table{
+    color: black;
+    font-size: 1em;
+}
+#CurrentReservations .table th{
+    background: #37474F;
+    color: white;
+    font-size: 1.1em;
+}
+#CurrentReservations .table td{
+    padding: 10px 0 10px 6px;
+    letter-spacing: 1px;
+}
+#Reservations{
+    background: white;
+    margin-left: 25px;
+    margin-right: 25px;
+}
+#Reservations h2{
+    margin-left: 5px;
+    margin-top: 0;
+    padding-top: 20px;
+}
+
+.centerTdElement{
+    position: relative;
+    left: 25%;
+    display: inline-block;
+}
+.tdWithCheckbox>input{
+    float: left;
+    margin-left: 10px;
+}
+.tdWithCheckbox .btn{
+    padding: 0 3px 0 3px;
+    visibility: hidden;
+}
+.no-reservation{
+    font-size: 1.5em;
+    margin-top: 30px;
+    margin-left: 0;
+    padding: 20px 0 20px 0;
+}
+
+.add-item{
+    float: right;
+    display: inline-block;
+    position: relative;
+    top: 2px;
+    font-size: 0.8em;
+}
+
+#DishManage, #MenuCategoryManage{
+    background: white;
+    margin: 10px 10px 5px 10px;
+    padding: 0 10px 10px 10px;
+    height: 100%;
+    border: 1px solid white;
+}
+#DishManage h2:first-child{
+    margin-bottom: 20px;
+}
+#DishManage ul{
+    list-style: none;
+    min-height: 50px;
+    padding: 0;
+    border-bottom: 1px solid #37474F;
+}
+#DishManage ul>li{
+    display: inline-block;
+}
+#DishManage ul>li a{
+    color: #37474F;
+    background: #37474F;
+    color: white;
+    text-decoration: none;
+    display: inline-block;
+    padding: 7px;
+    font-size: 1.4em;
+}
+#DishManage ul>li a:hover{
+    background: #49606b;
+    color: white;
+}
+.dish{
+    min-height: 130px;
+    padding: 5px 5px 5px 5px;
+    background: rgba(55, 71, 79, 0.20);
+    color: #37474F;
+    margin-bottom: 5px;
+}
+.dish-photo > img {
+    height: 120px;
+    width: 120px;
+    float: left;
+}
+.dish-left{
+    float: left;
+    font-size: 1em;
+    margin-left: 8px;
+}
+.dish-left > p > strong {
+    letter-spacing: 0.7px;
+}
+.dish-left span{
+    font-size: 1.1em;
+}
+.dish-left > p:not(:first-child)>strong{
+    width: 100px;
+    display: inline-block;
+}
+.dish-name {
+    font-weight: bold;
+}
+.dish-operations{
+    float: right;
+}
+.dish-operations form{
+    display: inline-block;
+}
+.btn-edit,.btn-delete{
+    letter-spacing: 1px;
+    padding: 3px;
+    border-radius: 5px;
+    letter-spacing: 1px;
+    padding: 3px;
+    border-radius: 10%;
+}
+.btn-add, #DishManage a.btn-add{
+    text-decoration: none;
+    padding: 5px;
+    background: linear-gradient(rgba(55, 71, 79, 0.60),#37474F);
+    border: 1px solid #37474F;
+    border-radius: 5%;
+    color: white;
+    display: inline-block;
+}
+#GalleryHeader a.btn-add:hover, .btn-add:hover{
+    background: #37474F;
+    border: 1px solid #37474F;
+    color: white;
+    text-decoration: none;
+}
+.btn-edit{
+    text-decoration: none;
+    background: linear-gradient(rgba(242, 173, 34, 0.50),#f2ad22);
+    border: 1px solid #f3b73b;
+    box-shadow: 0 0 4px #f3b73b inset;
+    color: white;
+    display: inline-block;
+}
+.btn-edit:hover, a.btn-edit:hover {
+    background: #f2ad22;
+    text-decoration: none;
+    color: white;
+}
+.btn-delete{
+    background: linear-gradient(rgba(245, 95, 95, 0.60),#f55f5f);
+    border: 1px solid #f33b3b;
+    box-shadow: 0 0 4px #f33b3b inset;
+    color: white;
+}
+.btn-delete:hover {
+    background: #f55f5f;
+    box-shadow: 0 0 4px #eb4949 inset;
+}
+
+#MenuCategoryManage {
+    font-size: 1.1em;
+    
+}
+#MenuCategoryManage h2:first-child{
+    float: left;
+    margin-bottom: 20px;
+}
+.menu-category{
+    border: 1px solid black;
+    width: 100%;
+    font-size: 1.1em;
+    width: 100%;
+    float:left;
+}
+.btn-menu-category{
+    float: right;
+    position: relative;
+    top: 24px;
+}
+.menu-category table{
+    width: 100%;
+}
+.menu-category table button{
+    font-size: 0.8em;
+}
+.menu-category table tr:first-child{
+    border-bottom: 1px solid #37474F;
+}
+.menu-category td, .menu-category th{
+    padding: 8px 5px 8px 5px;
+}
+.menu-category tr:hover{
+    background-color: whitesmoke;
+}
+.menu-category-title {
+    margin: 0;
+    display: inline-block;
+    width: 100%;
+    background: rgba(55, 71, 79, 0.90);
+    color: white;
+    padding: 7px 0 7px 10px;
+}
+
+#GalleryManage{
+    margin: 10px;
+    min-height: 500px;
+    padding: 0 5px 5px 5px;
+    background-color: white;
+    max-width: 1059px;
+    display: inline-block;
+    font-size: 1.1em;
+}
+.gallery-item{
+    float: left;
+    padding: 10px;
+    margin-bottom: 20px;
+    margin-left: 15px;
+    background: rgba(55, 71, 79, 0.10);
+}
+.gallery-img{
+    height: 140px;
+    width: 227px;
+    border: 2px solid #37474F;
+    border-radius: 5px;
+}
+.gallery-buttons>button{
+    margin-top: 5px;
+}
+
+#ContainerForForm{
+    font-size: 0.9em;
+    width: 98%;
+    padding-left: 25%;
+    padding-bottom: 20px;
+    padding-top: 10px;
+    background-color: white;
+    margin: 10px;
+}
+#ContainerForForm h2{
+    margin-top: 0; padding-top: 20px;
+}
+.f-group{
+    width: 100%;
+}
+.f-input input, .f-input select{
+    border-radius: 10px;
+    border: 1px solid #2E2E2E;
+    padding: 8px 15px 8px 8px;
+    width: 49%;
+}
+.f-group input[type=file]{
+    border: none;
+    margin: 0;
+    padding: 0;
+    border-radius: 0 0 0;
+}
+.f-photo img{
+    float: left;
+    height: 100px;
+    width: 100px;
+    border: 1px solid black;
+    text-align: center;
+}
+.f-photo input{
+    float: left;
+    position: relative;
+    top: 75px;
+    left: 10px;
+}
+.f-group label{
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+.btn-submit{
+    padding: 5px;
+    background: #4B515D;
+    border: 1px solid #2E2E2E;
+    color: white;
+    position: relative;
+}
+.right-button{
+    width: 49%;
+}
+.right-button .btn-submit{
+    float: right;
+    margin-top: 10px;
+}
+.validation-msg{
+    color: #f55f5f;
+    display: inline-block;
+    min-width: 50%;
+}
+.backLink{
+    float: right;
+    display: inline-block;
+    font-size: 1.2em;
+    position: relative;
+    right: 20px;
+    top: 10px;
+}
+
+#GalleryHeader h2{
+    margin-left: 12px;
+    margin-bottom: 17px;
+    float: left;
+}
+#GalleryHeader a{
+    float: right;
+    margin-top: 20px;
+    margin-right: 10px;
+}
+
+.message{
+    font-size: 1.2em;
+    border-radius: 10px;
+    text-align: center;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    margin-top: 15px;
+    margin-left: 5px;
+    margin-right: 5px;
+    box-shadow: 0 0 2px #72c77d;
+    background-color: #72c77d;
+    color: #37474F;
+}
+
+#ReservationNavBar{
+    font-size: 1.3em;
+    list-style: none;
+    padding: 10px 0 0 25px;
+    margin:0;
+}
+
+#ReservationNavBar li{
+    display: inline-block;
+}
+
+#ReservationNavBar li a{
+    padding: 5px;
+    background: #37474F;
+    color: white;
+    display: inline-block;
+    text-decoration: none;
+    border-radius: 7px 7px 0 0;
+}
+#ReservationNavBar li a:hover{
+    background: rgba(55, 71, 79, 0.70);
+}
+#AccountManageContainer{
+    background: rgba(128, 128, 128, 0.20);
+    padding-bottom: 10px;
+    padding-top: 1px;
+    display: block;
+}
+#AccountManageContainer h2{
+    margin-top: 5px;
+    margin-bottom: 5px;
+    float: left;
+}
+#AccountManageContainer form>button{
+    float: right;
+}
+#DisplayUserData{
+    float: left;
+    margin: 0;
+}
+#DisplayUserData h3, #ChangeUserData h3{
+    margin-bottom: 25px;
+}
+#DisplayUserData strong{
+    display: inline-block;
+    width: 150px;
+}
+#ChangeUserData{
+    float: left;
+    font-size: 1em;
+    margin-left: 15%;
+}
+.wrapper{
+    background: white;
+    padding: 15px;
+    margin-top: 10px;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+#Result form{
+    margin-left: 25%;
+}
+
+#Bg-Wrapper{
+    display: none;
+    position: fixed; 
+    background: rgba(55, 71, 79, 0.70);
+    width: 100%;
+    height: 100%;
+    z-index: 100;
+}
+#MsgBox{
+    z-index: 101;
+    background: white;
+    width: 50%;
+    margin-left: 15%;
+    padding: 15px 30px 15px 30px;
+    margin-top: 50px;
+    border-radius: 5px;
+}
+#MsgBox>p:first-child{
+    font-size: 1.2em;
+}
+#BtnConfirm{
+    border-radius: 5px;
+    border: 1px solid #61ba3b;
+    padding: 0 15px 0 15px;
+    box-shadow: 0 0 2px #61ba3b;
+    color: white;
+    background: #61ba3b;
+}
+#BtnCancel{
+    border-radius: 5px;
+    border: 1px solid #ba3b3b;
+    padding: 0 15px 0 15px;
+    box-shadow: 0 0 2px #ba3b3b;
+    color: white;
+    background: #ba3b3b;
+}
+#BtnConfirm:hover,#BtnCancel:hover{
+    opacity: 0.8;
+}
+
+.active{
+    background: rgba(128, 128, 128, 0.70) !important;
+}
+
+.activeForDynamic{
+    background: rgba(75, 81, 93, 0.80) !important;
+}

@@ -1,0 +1,34 @@
+﻿
+@model IEnumerable<Restaurant.Domain.Entities.Dish>
+
+<div id="DishList">
+    @foreach (var dish in Model)
+    {
+        <div class="dish">
+            <div class="dish-photo">
+                <img src="@Url.Action("GetPhoto", "Dish", new { id = dish.Id })" alt="no photo" />
+            </div>
+            <div class="dish-left">
+                <p class="dish-name">@dish.Name</p>
+                <p class="dish-position">
+                    <strong>Position:</strong>
+                    <span>@dish.Position</span>
+                </p>
+                <p class="dish-price">
+                    <strong>Price:</strong>
+                    <span>@string.Format("{0:C}", dish.Price)</span>
+                </p>
+            </div>
+            <div class="dish-operations">
+                <a href="@Url.Action("Edit", "Dish", new { id=dish.Id })" class="btn-edit">Edit</a>
+                @using (Html.BeginForm("Delete", "Dish", FormMethod.Post))
+                {
+                    @Html.AntiForgeryToken()
+                    @Html.Hidden("Id",dish.Id)
+                    <button type="submit" class="btn-delete">Delete</button>
+                }
+            </div>
+            <div style="clear: both;"></div>
+        </div>
+    }
+</div>

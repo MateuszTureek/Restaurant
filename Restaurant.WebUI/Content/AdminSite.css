@@ -1,0 +1,189 @@
+﻿#ManageOptions{
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    font-size: 1.2em;
+    letter-spacing: 1px;
+}
+#ManageOptions a:hover{
+    background: rgba(55, 71, 79, 0.80);
+}
+#ManageOptions>li>ul{
+    list-style: none;
+    padding: 0;
+    display: block;
+    transform-origin: 50% 0;
+    transform: scaleY(0);
+    height: 0;
+    opacity: 0;
+    background: #37474F;
+    border: 2px solid #37474F;
+}
+#ManageOptions>li>ul>li{
+    display: block;
+}
+#ManageOptions>li>ul>li a{
+    padding: 6px;
+    padding-left: 30px;
+    color: white;
+    display: block;
+}
+#ManageOptions > li {
+    display: block;
+}
+#ManageOptions > li a:hover,
+#ManageOptions > li a:focus {
+    text-decoration: none;
+}
+#ManageOptions>li>a:first-child{
+    display: block;
+    padding: 7px;
+    color: white;
+    font-size: 1.1em;
+}
+.active{
+    background: #808080 !important;
+}
+
+.animDropdownUl {
+    animation: dropdownUl 0.4s forwards;
+}
+.animDropupUl {
+    animation: dropupUl 0.4s forwards;
+}
+
+.dropdownUl{
+    height: 83px;
+    transform: scaleY(1);
+    opacity: 1;
+}
+.dropupUl{
+    height: 0;
+    transform: scaleY(0);
+    opacity: 0;
+}
+
+@keyframes dropdownUl {
+    0% {
+        height: 0;
+        transform: scaleY(0);
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+        height: 83px;
+        transform: scaleY(1);
+    }
+}
+
+@keyframes dropupUl {
+    0% {
+        height: 83px;
+        transform: scaleY(1);
+        opacity: 1;
+    }
+
+    25% {
+        height: 83px;
+    }
+
+    100% {
+        opacity: 0;
+        height: 0;
+        transform: scaleY(0);
+    }
+}
+
+#AdminManage{
+    background: white;
+    margin: 10px 10px 10px 10px;
+    padding: 10px;
+}
+#AdminManage h3{
+    margin-top: 5px;
+    margin-bottom: 10px;
+}
+#AdminManage p{
+    margin-top: 15px;
+}
+#AdminManage p strong{
+    display: inline-block;
+    width: 200px;
+    font-size: 0.95em;
+}
+#AdminManage p span{
+    font-size: 1em;
+    letter-spacing: 1px;
+}
+#UserInfo, #RoleInfo{
+    float: left;
+}
+.ico{
+    float: right;
+    font-size: 6em;
+    margin-top: 30px;
+    margin-right: 30px;
+}
+.f-photo img{
+    float: left;
+    height: 100px;
+    width: 100px;
+    border: 1px solid black;
+    text-align: center;
+}
+.btn-submit{
+    padding: 5px;
+    background: #4B515D;
+    border: 1px solid #2E2E2E;
+    color: white;
+    position: relative;
+    margin-top: 10px;
+}
+#ContainerForForm{
+    font-size: 0.9em;
+    width: 98%;
+    padding-left: 25%;
+    padding-bottom: 20px;
+    padding-top: 10px;
+    background-color: white;
+    margin: 10px;
+}
+#ContainerForForm h2{
+    margin-top: 0;
+    padding-top: 20px;
+}
+.message{
+    font-size: 1.2em;
+    border-radius: 10px;
+    text-align: center;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    margin-top: 15px;
+    margin-left: 5px;
+    margin-right: 5px;
+    box-shadow: 0 0 2px #72c77d;
+    background-color: #72c77d;
+    color: #37474F;
+}
+#ContainerForTable{
+    background: white;
+    margin: 10px;
+    padding: 10px;
+}
+#ContainerForTable h2{
+    margin-top: 10px;
+}
+.btn-delete{
+    letter-spacing: 1px;
+    padding: 3px;
+    border-radius: 10%;
+    background: linear-gradient(rgba(245, 95, 95, 0.60),#f55f5f);
+    border: 1px solid #f33b3b;
+    box-shadow: 0 0 4px #f33b3b inset;
+    color: white;
+}
+.btn-delete:hover {
+    background: #f55f5f;
+    box-shadow: 0 0 4px #eb4949 inset;
+}

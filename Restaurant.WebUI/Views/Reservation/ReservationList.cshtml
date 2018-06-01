@@ -1,0 +1,37 @@
+﻿
+@model IEnumerable<Restaurant.Domain.Entities.Reservation>
+
+<div id="CurrentReservations">
+    @if (Model.Count() != 0 && Model != null)
+    {
+        <table class="table table-hover">
+            <tr>
+                <th>Term</th>
+                <th>Name</th>
+                <th>Number of guests</th>
+                <th>Phone number</th>
+                <th>Email</th>
+                <th>Arrived</th>
+            </tr>
+            @foreach (var reservation in Model)
+            {
+                <tr>
+                    <td>@reservation.Term</td>
+                    <td>@reservation.Name</td>
+                    <td><span class="centerTdElement">@reservation.NumberOfGuests</span></td>
+                    <td>@reservation.PhoneNumber</td>
+                    <td>@reservation.Email</td>
+                    <td data-id="@reservation.Id" class="tdWithCheckbox">
+                        @Html.CheckBox("Arrived", reservation.Arrived, new { @class = "arrived", disabled="disabled" })
+                        <input data-arrived="@reservation.Arrived" type="button" value="Confirm"
+                               class="btn btn-success btn-sm" />
+                    </td>
+                </tr>
+            }
+        </table>
+    }
+    else
+    {
+        <p class="text-center bg-info no-reservation">Aren't any reservations.</p>
+    }
+</div>

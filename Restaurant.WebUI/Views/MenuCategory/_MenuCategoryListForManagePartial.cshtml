@@ -1,0 +1,25 @@
+﻿@model IEnumerable<Restaurant.Domain.Entities.MenuCategory>
+
+@{ 
+    var ajaxOpctions = new AjaxOptions
+    {
+        UpdateTargetId = "Dishes"
+    };
+}
+
+<ul>
+    <li>
+        @Ajax.ActionLink("All", "DishListForManagePartial", "Dish", null, ajaxOpctions)
+    </li>
+    @foreach (var menuCategory in Model)
+    {
+        <li>
+            @Ajax.ActionLink(menuCategory.Name, "DishListForManagePartial", "Dish",
+                             new { menuCategoryName = menuCategory.Name }, ajaxOpctions)
+        </li>
+    }
+    <li class="add-item">
+        <a href="@Url.Action("Create", "Dish")" class="btn-add">Add new dish</a>
+    </li>
+</ul>
+<div style="clear: both;"></div>

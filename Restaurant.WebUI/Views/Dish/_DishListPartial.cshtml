@@ -1,0 +1,24 @@
+﻿
+@model IEnumerable<Restaurant.Domain.Entities.Dish>
+
+@if (ViewBag.MenuCategory != null)
+{
+    <h2 class="h2-dish">@ViewBag.MenuCategory</h2>
+}
+else
+{
+    <h2 class="h2-dish">ALL</h2>
+}
+<hr />
+@foreach (var dish in Model)
+{
+    <div class="menu-item">
+        <img class="menu-item-img" src="@Url.Action("GetPhoto","Dish", new { id = dish.Id })" alt="no photo" />
+        <div class="menu-item-info">
+            <p class="menu-item-name">@dish.Name</p>
+            <p class="menu-item-description">@dish.Description</p>
+        </div>
+        <p class="menu-item-price">@string.Format("{0:C}", dish.Price)</p>
+    </div>
+    <div style="clear: both"></div>
+}

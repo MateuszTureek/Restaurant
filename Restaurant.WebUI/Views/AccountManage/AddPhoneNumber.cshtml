@@ -1,0 +1,33 @@
+﻿@model Restaurant.WebUI.Models.AddPhoneNumberViewModel
+
+@{
+    ViewBag.Title = "AddPhoneNumber";
+    Layout = "~/Views/Shared/_ManageLayout.cshtml";
+}
+
+<div id="ContainerForForm">
+    @using (Html.BeginForm("AddPhoneNumber", "AccountManage", FormMethod.Post))
+    {
+        <h3>Add phone.</h3>
+        <p>
+            <a class="back" href="@Url.Action("Index","AccountManage")">Back to manage</a>
+            <div style="clear: both;"></div>
+        </p>
+        @Html.AntiForgeryToken()
+        @Html.ValidationSummary(true, "", new { @class = "validation-msg" })
+
+        <div class="f-group">
+            @Html.LabelFor(m => m.Number)
+            <div class="f-input">
+                @Html.EditorFor(m => m.Number)
+                <span class="validation-msg">
+                    @Html.ValidationMessageFor(m => m.Number)
+                </span>
+            </div>
+            <div class="right-button">
+                <input type="submit" value="Add phone number" class="btn-submit" />
+            </div>
+        </div>
+        <div style="clear: both;"></div>
+    }
+</div>

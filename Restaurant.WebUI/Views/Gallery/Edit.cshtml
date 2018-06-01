@@ -1,0 +1,46 @@
+﻿@model Restaurant.WebUI.Models.EditGalleryItemViewModel
+
+@{
+    ViewBag.Title = "Edit";
+    Layout = "~/Views/Shared/_EmployeeLayout.cshtml";
+}
+
+<div id="ContainerForForm">
+    <a class="backLink" href="@Url.Action("Manage","Gallery")">Return to gallery items</a>
+    <h2>Edit dish</h2>
+    @using (Html.BeginForm("Edit", "Gallery", FormMethod.Post, new { enctype = "multipart/form-data" }))
+    {
+        @Html.AntiForgeryToken()
+        @Html.ValidationSummary(true, "", new { @class = "validation-msg" })
+
+        @Html.HiddenFor(m => m.Id)
+        @Html.HiddenFor(m => m.Image)
+        @Html.HiddenFor(m => m.ImageMimeType)
+
+        <div class="f-group">
+            <label for="Photo"></label>
+            <div class="f-photo">
+                <img src="@Url.Action("GetImage","Gallery",new { id = Model.Id })" alt="image not found" />
+                <input id="PhotoFile" name="Image" type="file" />
+                <div style="clear: both;"></div>
+            </div>
+        </div>
+        <div class="f-group">
+            @Html.LabelFor(m => m.Position)
+            <div class="f-input">
+                @Html.EditorFor(m=>m.Position)
+                <span class="validation-msg">
+                    @Html.ValidationMessageFor(m => m.Position)
+                </span>
+            </div>
+        </div>
+        <div class="right-button">
+            <input type="submit" value="Save changes" class="btn-submit" />
+        </div>
+        <div style="clear: both;"></div>
+    }
+</div>
+
+@section scripts{
+    <script src="~/Scripts/Restaurant/LoadPhoto.js"></script>
+}

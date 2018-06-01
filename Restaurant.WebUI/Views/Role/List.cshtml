@@ -1,0 +1,33 @@
+﻿@model IEnumerable<Restaurant.WebUI.Models.RoleListViewModel>
+
+@{
+    ViewBag.Title = "List";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div id="ContainerForTable">
+    <h2>List</h2>
+    <table class="table table-striped">
+        <tr>
+            <th>Role name</th>
+            <th>Added date</th>
+            <th></th>
+        </tr>
+        @foreach (var role in Model)
+        {
+            <tr>
+                <td>@role.RoleName</td>
+                <td>@role.AddedDate</td>
+                <td>
+                    @using (Html.BeginForm("Delete", "Role", FormMethod.Post))
+                    {
+                        @Html.AntiForgeryToken()
+                        @Html.Hidden("id", role.Id)
+
+                        <input type="submit" value="Delete" class="btn-delete" />
+                    }
+                </td>
+            </tr>
+        }
+    </table>
+</div>

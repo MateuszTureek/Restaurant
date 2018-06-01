@@ -1,0 +1,105 @@
+﻿@model Restaurant.WebUI.Models.IndexViewModel
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_ManageLayout.cshtml";
+}
+
+<div id="Bg-Wrapper">
+    <div id="MsgBox">
+        <h2>Message</h2>
+        <p>Are you sure to delete your account?</p>
+        <p>
+            <button id="BtnConfirm">Confirm</button>
+            <button id="BtnCancel">Cancel</button>
+            <div style="clear: both;"></div>
+        </p>
+    </div>
+</div>
+
+<div id="AccountManageContainer">
+    <div class="wrapper">
+        <h2>Manage your account:</h2>
+        <div id="DisplayUserData">
+            <h3>Actual data:</h3>
+            <p>
+                <strong>User name:</strong>
+                <span>@Model.UserName</span>
+            </p>
+            <p>
+                <strong>Email:</strong>
+                <span>@Model.Email</span>
+            </p>
+            <p>
+                <strong>Phone number:</strong>
+                <span>@Model.PhoneNumber</span>
+            </p>
+        </div>
+        <div id="ChangeUserData">
+            <h3>Manage:</h3>
+            <p>
+                @if (Model.HasPassword)
+                {
+                    @Html.ActionLink("Change password", "ChangePassword", "AccountManage")
+                }
+                else
+                {
+                    @Html.ActionLink("Set password", "SetPassword", "AccountManage")
+                }
+            </p>
+            <p>
+                @Html.ActionLink("Change email","ChangeEmail","AccountManage")
+            </p>
+            <p>
+                @if (Model.HasPhoneNumber)
+                {
+                    @Html.ActionLink("Change phone number", "AddPhoneNumber", "AccountManage")
+                }
+                else
+                {
+                    @Html.ActionLink("Add phone number", "AddPhoneNumber", "AccountManage")
+                }
+            </p>
+        </div>
+        <div style="clear: both;"></div>
+        <p>
+            @using (Html.BeginForm("DeleteAccount", "AccountManage", FormMethod.Post))
+            {
+                @Html.AntiForgeryToken()
+                <button type="submit" class="btn-delete">Delete account</button>
+            }
+        </p>
+        <div style="clear: both;"></div>
+    </div>
+</div>
+
+@section scripts{
+    <script src="~/Scripts/jquery-3.1.1.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            var $form = $('#AccountManageContainer').find('form');
+            var $btnConfirm = $('#BtnConfirm');
+            var $btnCancel = $('#BtnCancel');
+            var $wrapper = $('#Bg-Wrapper');
+            var $msgBox = $('#MsgBox');
+            var result = false;
+            $($form).on('submit', function () {
+                if (!result) {
+                    $($wrapper).show();
+                    return false;
+                }
+                return true;
+            });
+            $($btnCancel).on('click', function () {
+                $($wrapper).hide();
+            });
+            $($btnConfirm).on('click', function () {
+                result = true;
+                $($form).submit();
+            });
+            $($wrapper).on('click', function () {
+                $($wrapper).hide();
+            });
+        });
+    </script>
+}

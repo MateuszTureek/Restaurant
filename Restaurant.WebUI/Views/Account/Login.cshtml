@@ -1,0 +1,42 @@
+﻿
+@model Restaurant.WebUI.Models.LoginViewModel
+
+@{
+    ViewBag.Title = "Login";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div id="ContainerForForm">
+    @using (Html.BeginForm("Login", "Account", new { ReturnUrl = "/Manage/Index" }, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+    {
+        @Html.AntiForgeryToken()
+
+        <div id="Login">
+            @Html.ValidationSummary(true, "", new { @class = "validation-msg" })
+            <h2>@ViewBag.Title.</h2>
+            <div class="f-group">
+                @Html.LabelFor(m => m.Email)
+                <div>
+                    @Html.TextBoxFor(m => m.Email)
+                    <span class="validation-msg">
+                        @Html.ValidationMessageFor(m => m.Email, "")
+                    </span>
+                </div>
+            </div>
+            <div class="f-group">
+                @Html.LabelFor(m => m.Password)
+                <div>
+                    @Html.PasswordFor(m => m.Password)
+                    <span class="validation-msg">
+                        @Html.ValidationMessageFor(m => m.Password, "")
+                    </span>
+                </div>
+            </div>
+            <div>
+                @Html.CheckBoxFor(m => m.RememberMe)
+                @Html.LabelFor(m => m.RememberMe)
+            </div>
+            <input type="submit" value="Log in" class="btn-submit" />
+        </div>
+    }
+</div>

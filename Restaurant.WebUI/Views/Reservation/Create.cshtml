@@ -1,0 +1,92 @@
+﻿@model Restaurant.WebUI.Models.ReservationViewModel
+
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+    var ajaxOptions = new AjaxOptions
+    {
+        UpdateTargetId = "Reservation"
+    };
+}
+
+<link href="~/Content/themes/base/jquery-ui.css" rel="stylesheet" />
+<link href="~/Content/jquery-ui-timepicker-addon.css" rel="stylesheet" />
+
+<div id="Reservation">
+    @using (Ajax.BeginForm("Create", "Reservation", ajaxOptions, FormMethod.Post))
+    {
+        @Html.AntiForgeryToken()
+        @Html.ValidationSummary(true)
+        <div class="f-group">
+            @Html.LabelFor(m => m.Name)
+            <div>
+                @Html.EditorFor(m => m.Name)
+                <span class="red-star">*</span>
+                <br />
+                <span class="validation-msg">
+                    @Html.ValidationMessageFor(m => m.Name)
+                </span>
+            </div>
+        </div>
+        <div class="f-group">
+            @Html.LabelFor(m => m.Term)
+            <div>
+                @Html.TextBoxFor(m => m.Term, new { @readonly = "readonly" })
+                <span class="red-star">*</span>
+                <br />
+                <span class="validation-msg">
+                    @Html.ValidationMessageFor(m => m.Term)
+                </span>
+            </div>
+        </div>
+        <div class="f-group">
+            @Html.LabelFor(m => m.PhoneNumber)
+            <div>
+                @Html.EditorFor(m => m.PhoneNumber)
+                <span class="red-star">*</span>
+                <br />
+                <span class="validation-msg">
+                    @Html.ValidationMessageFor(m => m.PhoneNumber)
+                </span>
+            </div>
+        </div>
+        <div class="f-group">
+            @Html.LabelFor(m => m.Email)
+            <div>
+                @Html.EditorFor(m => m.Email)
+                <span class="red-star">*</span>
+                <br />
+                <span class="validation-msg">
+                    @Html.ValidationMessageFor(m => m.Email)
+                </span>
+            </div>
+        </div>
+        <div class="f-group">
+            @Html.LabelFor(m => m.NumberOfGuests)
+            <div>
+                @Html.DropDownListFor(m => m.NumberOfGuests, ViewBag.ListNumerOfQuests as List<SelectListItem>)
+                <span class="validation-msg">
+                    @Html.ValidationMessageFor(m => m.NumberOfGuests)
+                </span>
+            </div>
+        </div>
+        <div class="s-group">
+            <input type="submit" value="Add reservation" class="btn-submit" />
+        </div>
+    }
+    <div id="ReservationInfo">
+        <h3>Fusce magna lectus, accumsan.</h3>
+        <p>Duis orci urna, venenatis non auctor quis, fringilla vel turpis. Sed nulla lorem, tristique id pretium ut, interdum eu est. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.</p>
+        <p>Donec vitae iaculis augue. Suspendisse quis iaculis turpis. Curabitur finibus dolor vehicula, commodo felis iaculis, iaculis elit. In ipsum dui, elementum a nunc nec, cursus convallis dui. Praesent a est bibendum, ultrices odio a, luctus ligula. Mauris consequat suscipit mi vitae placerat. </p>
+    </div>
+    <div style="clear:both;"></div>
+</div>
+
+@section scripts{
+    @Scripts.Render("~/bundles/jquery-ui")
+    @Scripts.Render("~/bundles/jqueryval")
+    <script src="~/Scripts/jquery-ui-timepicker-addon.js"></script>
+    <script src="~/Scripts/Restaurant/Reservation.js"></script>
+    <script src="~/Scripts/Restaurant/Datepicker.js"></script>
+}

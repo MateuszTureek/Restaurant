@@ -1,0 +1,38 @@
+﻿
+@model IEnumerable<Restaurant.WebUI.Models.UserListViewModel>
+
+@{
+    ViewBag.Title = "List";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div id="ContainerForTable">
+    <h2>List</h2>
+    <table class="table table-striped">
+        <tr>
+            <th>User name</th>
+            <th>Email</th>
+            <th>Phone number</th>
+            <th>Added date</th>
+            <th></th>
+        </tr>
+        @foreach(var user in Model)
+        {
+            <tr>
+                <td>@user.UserName</td>
+                <td>@user.Email</td>
+                <td>@user.PhonNumber</td>
+                <td>@user.AddedDate</td>
+                <td>
+                    @using (Html.BeginForm("Delete", "User", FormMethod.Post))
+                    {
+                        @Html.AntiForgeryToken()
+                        @Html.Hidden("Id",user.UserID)
+
+                        <input type="submit" class="btn-delete" value="Delete" />
+                    }
+                </td>
+            </tr>
+        }
+    </table>
+</div>

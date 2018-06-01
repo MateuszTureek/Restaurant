@@ -1,0 +1,82 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>@ViewBag.Title</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+</head>
+<body>
+    @using Restaurant.WebUI.Helpers;
+    @{ 
+        string employeeRoleName = "Employee";
+        string adminRoleName = "Admin";
+    }
+    <div id="Container">
+        <header>
+            <div id="TopBar">
+                <p>Telefon: <span>(00) 11 22 3333</span></p>
+                <ul>
+                    @if (!User.Identity.IsAuthenticated)
+                    {
+                        <li>@Html.ActionLink("Log in", "Login", "Account")</li>
+                    }
+                    else
+                    {
+                        if (User.IsInRole(employeeRoleName))
+                        {
+                            <li><a href="@Url.Action("Index", "Manage")">Go to manage</a></li>
+                        }
+                        if (User.IsInRole(adminRoleName))
+                        {
+                            <li><a href="@Url.Action("Index", "Admin")">Go to manage</a></li>
+                        }
+                    }
+                </ul>
+            </div>
+            <div style="clear: both;"></div>
+            <div id="Logo">
+                @Html.ActionLink("Restaurant","Index", "Home", null, new { @class = "logo-a" })
+            </div>
+            <nav>
+                <ul>
+                    <li class="@Html.IsSelected("Index","Home", "active")">
+                        @Html.ActionLink("Home","Index","Home")
+                    </li>
+                    <li class="@Html.IsSelected("Index","Dish", "active")">
+                        @Html.ActionLink("Menu", "Index", "Dish")
+                    </li>
+                    <li class="@Html.IsSelected("Create","Reservation", "active")">
+                        @Html.ActionLink("Reservation", "Create", "Reservation")
+                    </li>
+                    <li class="@Html.IsSelected("Index","Gallery", "active")"> 
+                        @Html.ActionLink("Gallery", "Index", "Gallery")
+                    </li>
+                    <li class="@Html.IsSelected("Contact","Home", "active")">
+                        @Html.ActionLink("Contact", "Contact", "Home")
+                    </li>
+                </ul>
+            </nav>
+        </header>
+        <div class="body-content">
+            @RenderBody()
+        </div>
+        <footer>
+            <ul>
+                <li>@Html.ActionLink("Home","Index","Home")</li>
+                <li>@Html.ActionLink("Menu", "Index", "Dish")</li>
+                <li>@Html.ActionLink("Reservation", "Index", "Reservation")</li>
+                <li>@Html.ActionLink("Gallery", "Index", "Gallery")</li>
+                <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
+            </ul>
+            <div class="contact">
+                <p>Telefon: <span>(22) 43 22 3332</span></p>
+                <p>Email: restauracja@fake.com</p>
+            </div>
+            <p class="copy">&copy; Mateusz Turek</p>
+        </footer>
+    </div>
+    @Scripts.Render("~/bundles/jquery")
+    @RenderSection("scripts", required: false)
+</body>
+</html>

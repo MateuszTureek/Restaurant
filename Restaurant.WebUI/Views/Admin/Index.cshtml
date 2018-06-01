@@ -1,0 +1,47 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div id="AdminManage">
+    <div id="UserInfo" style="float: left;">
+        <h3>Users:</h3>
+        <p>
+            <strong>Amount of users:</strong>
+            <span>@Html.Action("AmountOfUsers", "User")</span>
+        </p>
+        <p>
+            <strong>Last added user:</strong>
+            <span>@Html.Action("UsernameLastAddedUser", "User")</span>
+        </p>
+        <p>
+            <strong>Date last added user:</strong>
+            <span>@Html.Action("UsernameLastAddedUser", "User")</span>
+        </p>
+    </div>
+    <div class="ico">
+        <span class="glyphicon glyphicon-user"></span>
+    </div>
+    <div style="clear: both;"></div>
+    <hr />
+    <div id="RoleInfo">
+        <h3>Roles:</h3>
+        <p>
+            <strong>Amount of roles:</strong>
+            <span>@Html.Action("AmountOfRoles", "Role")</span>
+        </p>
+        <p>
+            <strong>Date last added role:</strong>
+            <span>@Html.Action("DateLastAddedRole", "Role")</span>
+        </p>
+        <p>
+            <strong>Last added role:</strong>
+            <span>@Html.Action("RoleNameLastAddedRole", "Role")</span>
+        </p>
+    </div>
+    <div class="ico">
+        <span class="glyphicon glyphicon-list"></span>
+    </div>
+    <div style="clear: both;"></div>
+</div>

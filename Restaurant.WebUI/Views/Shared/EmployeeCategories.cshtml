@@ -1,0 +1,35 @@
+﻿
+@using Restaurant.WebUI.Helpers;
+
+<ul id="ManageOptions">
+    <li class="@Html.IsSelected("Index","Manage", "active")">
+        <a href="@Url.Action("Index" ,"Manage")">
+            <span class="glyphicon glyphicon-home"></span>
+            Home
+        </a>
+    </li>
+    <li class="@Html.IsSelected("Index","Reservation", "active")">
+        <a href="@Url.Action("Index" ,"Reservation")">
+            <span class="glyphicon glyphicon-book"></span>
+            Reservations
+        </a>
+    </li>
+    <li class="@Html.IsSelected("Manage", "Dish", "active")">
+        <a href="@Url.Action("Manage" ,"Dish")">
+            <span class="glyphicon glyphicon-apple"></span>
+            Dishes
+        </a>
+    </li>
+    <li class="@Html.IsSelected("Manage","MenuCategory", "active")">
+        <a href="@Url.Action("Manage","MenuCategory")">
+            <span class="glyphicon glyphicon-menu-hamburger"></span>
+            Menu categories
+        </a>
+    </li>
+    <li class="@Html.IsSelected("Manage","Gallery", "active")">
+        <a href="@Url.Action("Manage", "Gallery")">
+            <span class="glyphicon glyphicon-picture"></span>
+            Gallery
+        </a>
+    </li>
+</ul>

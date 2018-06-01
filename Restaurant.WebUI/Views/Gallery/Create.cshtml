@@ -1,0 +1,42 @@
+﻿@model Restaurant.WebUI.Models.CreateGalleryItemViewModel
+
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_EmployeeLayout.cshtml";
+}
+
+<div id="ContainerForForm">
+    <a class="backLink" href="@Url.Action("Manage","Gallery")">Return gallery items</a>
+    <h2>New menu category</h2>
+    @using (Html.BeginForm("Create", "Gallery", FormMethod.Post, new { enctype = "multipart/form-data" }))
+    {
+        @Html.AntiForgeryToken()
+        @Html.ValidationSummary(true, "", new { @class = "validation-msg" })
+
+        <div class="f-group">
+            <label for="Image"></label>
+            <div class="f-photo">
+                <img src="@Url.Action("GetPhoto","Gallery",new { id = 0 })" alt="image not found" />
+                <input id="PhotoFile" name="Image" type="file" />
+                <div style="clear: both;"></div>
+            </div>
+        </div>
+        <div class="f-group">
+            @Html.LabelFor(m => m.Position)
+            <div class="f-input">
+                @Html.EditorFor(m => m.Position)
+                <span class="validation-msg">
+                    @Html.ValidationMessageFor(m => m.Position)
+                </span>
+            </div>
+        </div>
+        <div class="right-button">
+            <input type="submit" value="Add new gallery item" class="btn-submit" />
+        </div>
+        <div style="clear: both;"></div>
+    }
+</div>
+
+@section scripts{
+    <script src="~/Scripts/Restaurant/LoadPhoto.js"></script>
+}

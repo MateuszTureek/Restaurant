@@ -1,0 +1,14 @@
+﻿
+@{
+    ViewBag.Title = "Manage";
+    Layout = "~/Views/Shared/_EmployeeLayout.cshtml";
+}
+
+<div id="DishManage">
+    <h2>Dishes manage</h2>
+    @Html.Action("MenuCategoryForManageList", "MenuCategory")
+    <div id="Dishes">
+        @Html.Action("DishListForManagePartial", "Dish")
+        @* // here is ajax loading dish list*@
+    </div>
+</div>

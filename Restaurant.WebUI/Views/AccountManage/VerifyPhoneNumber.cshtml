@@ -1,0 +1,37 @@
+﻿
+@model Restaurant.WebUI.Models.VerifyPhoneNumberViewModel
+
+@{
+    ViewBag.Title = "VerifyPhoneNumber";
+    Layout = "~/Views/Shared/_ManageLayout.cshtml";
+}
+
+<div id="ContainerForForm">
+    @using (Html.BeginForm("VerifyPhoneNumber", "AccountManage", FormMethod.Post))
+    {
+        <h3>Verify Phone Number</h3>
+        <p>
+            <a class="back" href="@Url.Action("Index","AccountManage")">Back to manage</a>
+            <div style="clear: both;"></div>
+        </p>
+        @Html.AntiForgeryToken()
+        @Html.Hidden("phoneNumber", @Model.PhoneNumber)
+        <h4>Enter verification code</h4>
+        <h5>@ViewBag.Status</h5>
+        <hr />
+        @Html.ValidationSummary("", new { @class = "text-danger" })
+        <div class="f-group">
+            @Html.LabelFor(m => m.Code)
+            <div class="f-input">
+                @Html.TextBoxFor(m => m.Code)
+                <span class="validation-msg">
+                    @Html.ValidationMessageFor(m => m.Code)
+                </span>
+            </div>
+        </div>
+        <div class="right-button">
+            <input type="submit" value="Submit" class="btn-submit" />
+        </div>
+        <div style="clear: both;"></div>
+    }
+</div>

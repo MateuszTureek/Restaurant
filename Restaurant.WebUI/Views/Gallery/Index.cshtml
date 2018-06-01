@@ -1,0 +1,30 @@
+﻿@model IEnumerable<Restaurant.Domain.Entities.Gallery>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div id="GallerySlider">
+    <img src="@Url.Action("GetImage","Gallery",new { @id = Model.FirstOrDefault().Id })"
+         id="MainImage" alt="no photo" />
+    <ul id="Images">
+        <li class="left-arrow-li">
+            <span class="glyphicon glyphicon-arrow-left"></span>
+        </li>
+        @foreach(var image in Model)
+        {
+            <li class="image-item-li">
+                <img src="@Url.Action("GetImage","Gallery",new { @id = image.Id })" alt="no photo" />
+            </li>
+        }
+        <li class="right-arrow-li">
+            <span class="glyphicon glyphicon-arrow-right"></span>
+        </li>
+    </ul>
+    <div style="clear: both;"></div>
+</div>
+
+@section scripts{
+    <script src="~/Scripts/Restaurant/Gallery.js"></script>
+}
